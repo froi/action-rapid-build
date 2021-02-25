@@ -13,7 +13,7 @@ async function run() {
     const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
     const giphyEndpoint = "https://api.giphy.com/v1/gifs/search";
     const query = {
-      api_key: core.getInput("GIPHY_TOKEN"),
+      api_key: core.getInput("giphyToken"),
       q: "why",
       rating: "g"
     }
