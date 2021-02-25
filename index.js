@@ -13,7 +13,7 @@ async function run() {
     const issueNumber = github.context.issue.number;
 
     const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
-    const {data: gifs} = giphySearch.search('why', {rating: "g"});
+    const {data: gifs} = await giphySearch.search('why', {rating: "g"});
     const gif = gifs[0];
     const gifUrl = gif.images.original.url;
     const body = `Hey @${sender}. Why you label me?
