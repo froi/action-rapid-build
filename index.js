@@ -15,9 +15,8 @@ async function run() {
     ![](https://media.giphy.com/media/DfTZWmFpLx3os/source.gif)`;
 
     if(sender === allowedUser) {
-      body = `OK ... fineeee
-
-      ![](https://media.giphy.com/media/fQoxwZBVWq5jhLXRty/source.mp4)`
+      body = 'OK ... fineeee\n\n' +
+        '![](https://media.giphy.com/media/fQoxwZBVWq5jhLXRty/source.mp4)';
     }
 
     await octokit.issues.createComment({
