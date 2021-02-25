@@ -1,12 +1,5 @@
 name: 'Wait'
 description: 'Wait a designated number of milliseconds'
-inputs:
-  giphyToken:  # id of input
-    description: 'token to access the Giphy APi'
-    required: true
-outputs:
-  time: # output will be available to future steps
-    description: 'The message to output'
 runs:
   using: 'node12'
   main: 'dist/index.js'

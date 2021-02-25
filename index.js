@@ -6,7 +6,7 @@ const fetch = require('node-fetch');
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const apiKey = core.getInput("giphyToken");
+    const apiKey = process.env.GIPHY_TOKEN;
     core.info(apiKey)
     const sender = github.context.payload.sender.login;
     const owner = github.context.repo.owner;
@@ -23,12 +23,7 @@ async function run() {
     core.info(url);
     const response = await fetch(url)
     core.info(JSON.stringify(response, null, 2))
-    const giphyJson = response.json();
-    const {data: gifs} = giphyJson;
-    const gifUrl = gifs[0].images.original.url;
-    const body = `Hey @${sender}. Why you label me?
-
-    ![](${gifUrl})`;
+    const body = `Hey @${sender}. Why you label me?`;
 
     await octokit.issues.createComment({
       owner,
