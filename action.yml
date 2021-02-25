@@ -1,5 +1,9 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'add-comment'
+description: 'Adding a comment on a labeled action'
+inputs:
+  allowedUser:
+    description: the user that can add labels
+    required: true
 runs:
   using: 'node12'
   main: 'dist/index.js'
