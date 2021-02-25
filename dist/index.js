@@ -27,8 +27,9 @@ async function run() {
     const response = await fetch(
       `${giphyEndpoint}?${qs.stringify(query)}`
     )
-    core.info(JSON.stringify(response.json(), null, 2))
-    const {data: gifs} = response.json();
+    const giphyJson = response.json();
+    core.info(JSON.stringify(giphyJson, null, 2))
+    const {data: gifs} = giphyJson;
     const gifUrl = gifs[0].images.original.url;
     const body = `Hey @${sender}. Why you label me?
 
