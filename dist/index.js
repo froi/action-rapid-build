@@ -7,30 +7,25 @@ require('./sourcemap-register.js');module.exports =
 
 const core = __nccwpck_require__(186);
 const github = __nccwpck_require__(438);
-const qs = __nccwpck_require__(191)
-const fetch = __nccwpck_require__(467);
 
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const apiKey = process.env.GIPHY_TOKEN;
-    core.info(apiKey)
+    const allowedUser = core.getInput('allowedUser')
     const sender = github.context.payload.sender.login;
     const owner = github.context.repo.owner;
     const repo = github.context.repo.repo;
     const issueNumber = github.context.issue.number;
     const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
-    const giphyEndpoint = "https://api.giphy.com/v1/gifs/search";
-    const query = {
-      api_key: apiKey,
-      q: "why",
-      rating: "g"
+    let body = `Hey @${sender}. Why you label me?
+
+    ![](https://media.giphy.com/media/DfTZWmFpLx3os/source.gif)`;
+
+    if(sender === allowedUser) {
+      body = `OK ... fineeee
+
+      ![](https://media.giphy.com/media/fQoxwZBVWq5jhLXRty/source.mp4)`
     }
-    const url = `${giphyEndpoint}?${qs.stringify(query)}`
-    core.info(url);
-    const response = await fetch(url)
-    core.info(JSON.stringify(response, null, 2))
-    const body = `Hey @${sender}. Why you label me?`;
 
     await octokit.issues.createComment({
       owner,
@@ -5956,14 +5951,6 @@ module.exports = require("os");;
 
 "use strict";
 module.exports = require("path");;
-
-/***/ }),
-
-/***/ 191:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("querystring");;
 
 /***/ }),
 
