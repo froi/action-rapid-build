@@ -13,7 +13,6 @@ const fetch = __nccwpck_require__(467);
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    core.info(JSON.stringify(github.context.payload, null, 2));
     const sender = github.context.payload.sender.login;
     const owner = github.context.repo.owner;
     const repo = github.context.repo.repo;
@@ -28,6 +27,7 @@ async function run() {
     const response = await fetch(
       `${giphyEndpoint}?${qs.stringify(query)}`
     )
+    core.info(JSON.stringify(response.json(), null, 2))
     const {data: gifs} = response.json();
     const gifUrl = gifs[0].images.original.url;
     const body = `Hey @${sender}. Why you label me?
