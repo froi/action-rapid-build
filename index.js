@@ -11,7 +11,7 @@ async function run() {
     const repo = github.context.repo.name;
     const issueNumber = github.context.issue.number;
 
-    const octokit = github.getOctokit();
+    const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
 
     await octokit.issues.createComment({
       owner,
