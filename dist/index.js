@@ -13,6 +13,8 @@ const fetch = __nccwpck_require__(467);
 // most @actions toolkit packages have async methods
 async function run() {
   try {
+    const apiKey = core.getInput("giphyToken");
+    core.info(apiKey)
     const sender = github.context.payload.sender.login;
     const owner = github.context.repo.owner;
     const repo = github.context.repo.repo;
@@ -20,7 +22,7 @@ async function run() {
     const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
     const giphyEndpoint = "https://api.giphy.com/v1/gifs/search";
     const query = {
-      api_key: core.getInput("giphyToken"),
+      api_key: apiKey,
       q: "why",
       rating: "g"
     }
