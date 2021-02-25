@@ -12,7 +12,7 @@ const github = __nccwpck_require__(438);
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    core.info(github.context.payload)
+    core.info(JSON.stringify(github.context.payload, null, 2));
   } catch (error) {
     core.setFailed(error.message);
   }
