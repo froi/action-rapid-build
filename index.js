@@ -17,11 +17,11 @@ async function run() {
       q: "why",
       rating: "g"
     }
-    const response = await fetch(
-      `${giphyEndpoint}?${qs.stringify(query)}`
-    )
+    const url = `${giphyEndpoint}?${qs.stringify(query)}`
+    core.info(url);
+    const response = await fetch(url)
+    core.info(JSON.stringify(response, null, 2))
     const giphyJson = response.json();
-    core.info(JSON.stringify(giphyJson, null, 2))
     const {data: gifs} = giphyJson;
     const gifUrl = gifs[0].images.original.url;
     const body = `Hey @${sender}. Why you label me?
